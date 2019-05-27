@@ -1,0 +1,16 @@
+constants:
+  memcached:
+    instances: <%= ENV['OSTP_MEMCACHED_INSTANCES'] %>
+
+  kms:
+    saas:
+      id: <%= ENV['OSTP_SAAS_KMS_ID']%>
+
+  aws:
+    region: <%= ENV['OSTP_DEFAULT_AWS_REGION']%>
+    saas:
+      access_key: <%= ENV['OSTP_SAAS_AWS_ACCESS_KEY']%>
+      secret_key: <%= ENV['OSTP_SAAS_AWS_SECRET_KEY']%>
+
+  redis:
+    url: <%= ENV['OSTP_REDIS_ENDPOINT'] %>

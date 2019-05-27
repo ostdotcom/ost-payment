@@ -1,0 +1,18 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  encoding: utf8
+  collation: utf8_unicode_ci
+  reconnect: true
+  username: <%= ENV['OSTP_DEFAULT_DB_USER']%>
+  password: <%= ENV['OSTP_DEFAULT_DB_PASSWORD']%>
+  host: <%= ENV['OSTP_DEFAULT_DB_HOST']%>
+
+<%= Rails.env%>:
+  <<: *default
+  database: ost_payment_<%= Rails.env%>
+
+ost_payment_client_<%= Rails.env%>:
+  <<: *default
+  database: ost_payment_client_<%= Rails.env%>

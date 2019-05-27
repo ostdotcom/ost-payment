@@ -1,0 +1,7 @@
+missing_api_key:
+  parameter: "api_key"
+  msg: "Api Key is mandatory."
+
+missing_api_secret:
+  parameter: "api_secret"
+  msg: "Api Secret is mandatory."
