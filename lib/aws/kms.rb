@@ -10,8 +10,8 @@ module Aws
     # * Date:
     # * Reviewed By:
     #
-    # @param [String] purpose - this is the purpose for accessing the KMS service - login OR kyc
-    # @param [String] role - this is the role of the user for whom the KMS service is being called - admin OR user
+    # @param [String] purpose - this is the purpose for accessing the KMS service - 'saas'
+    # @param [String] role - this is the role of the user for whom the KMS service is being called - 'saas'
     #
     # @return [Aws::Kms]
     #

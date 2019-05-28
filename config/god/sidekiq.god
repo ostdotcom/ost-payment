@@ -52,7 +52,7 @@ num_workers.times do |num|
       on.condition(:memory_usage) do |c|
         c.above = 350.megabytes
         c.times = 2
-        c.notify = {:contacts => ['developers'], :priority => 1, :category => 'Simpletoken api staging-us'}
+        c.notify = {:contacts => ['developers'], :priority => 1, :category => 'OST Payment staging-us'}
       end
     end
 
@@ -82,7 +82,7 @@ num_workers.times do |num|
     w.transition(:up, :start) do |on|
       on.condition(:process_running) do |c|
         c.running = false
-        c.notify = {:contacts => ['developers'], :priority => 1, :category => 'Simpletoken api staging-us'}
+        c.notify = {:contacts => ['developers'], :priority => 1, :category => 'OST Payment staging-us'}
       end
     end
   end
