@@ -2,9 +2,9 @@ class Sha256
 
   # Initialize
   #
-  # * Author: Abhay
-  # * Date: 30/10/2017
-  # * Reviewed By: Kedar
+  # * Author:
+  # * Date:
+  # * Reviewed By:
   #
   # @param [String] string
   # @param [String] salt
@@ -19,9 +19,9 @@ class Sha256
 
   # Perform
   #
-  # * Author: Abhay
-  # * Date: 30/10/2017
-  # * Reviewed By: Kedar
+  # * Author:
+  # * Date:
+  # * Reviewed By:
   #
   # @return [String] Digest
   #
@@ -33,9 +33,9 @@ class Sha256
 
   # Get Digest
   #
-  # * Author: Abhay
-  # * Date: 30/10/2017
-  # * Reviewed By: Kedar
+  # * Author:
+  # * Date:
+  # * Reviewed By:
   #
   # @return [String] Digest
   #
@@ -46,9 +46,9 @@ class Sha256
 
   # Make 64 byte Digest
   #
-  # * Author: Abhay
-  # * Date: 30/10/2017
-  # * Reviewed By: Kedar
+  # * Author:
+  # * Date:
+  # * Reviewed By:
   #
   # Sets @digest_byte_value
   #
@@ -59,9 +59,9 @@ class Sha256
 
   # Convert each byte to headecimal value
   #
-  # * Author: Abhay
-  # * Date: 30/10/2017
-  # * Reviewed By: Kedar
+  # * Author:
+  # * Date:
+  # * Reviewed By:
   #
   def digest_byte_value_to_hexadecimal
     @digest_byte_value.each_byte.map { |b| b.to_s(16) }.join

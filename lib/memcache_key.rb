@@ -4,9 +4,9 @@ class MemcacheKey
 
   # Initialize
   #
-  # * Author: Abhay
-  # * Date: 30/10/2017
-  # * Reviewed By: Kedar
+  # * Author:
+  # * Date:
+  # * Reviewed By:
   #
   def initialize(entity)
     buffer = self.class.config_for_entity(entity)
@@ -18,9 +18,9 @@ class MemcacheKey
 
   # All Config for entity
   #
-  # * Author: Abhay
-  # * Date: 30/10/2017
-  # * Reviewed By: Kedar
+  # * Author:
+  # * Date:
+  # * Reviewed By:
   #
   def self.config_for_entity(entity)
     config_for_all_keys[entity.to_sym]
@@ -28,9 +28,9 @@ class MemcacheKey
 
   # Set Config for all entities
   #
-  # * Author: Abhay
-  # * Date: 30/10/2017
-  # * Reviewed By: Kedar
+  # * Author:
+  # * Date:
+  # * Reviewed By:
   #
   # Sets @memcache_config
   #

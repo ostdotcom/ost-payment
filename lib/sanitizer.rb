@@ -2,9 +2,9 @@ module Sanitizer
 
   # Sanitize params recursively
   #
-  # * Author: Kedar
-  # * Date: 09/10/2017
-  # * Reviewed By: Sunil Khedar
+  # * Author:
+  # * Date:
+  # * Reviewed By:
   #
   # @param [Hash] passed_params
   #
@@ -29,9 +29,9 @@ module Sanitizer
 
   # Hashify params recursively
   #
-  # * Author: Kedar
-  # * Date: 09/10/2017
-  # * Reviewed By: Sunil Khedar
+  # * Author:
+  # * Date:
+  # * Reviewed By:
   #
   # @param [Hash] passed_params
   #
@@ -61,9 +61,9 @@ module Sanitizer
 
   # Recursively check keys sanity
   #
-  # * Author: Kedar
-  # * Date: 09/10/2017
-  # * Reviewed By: Sunil Khedar
+  # * Author:
+  # * Date:
+  # * Reviewed By:
   #
   # @param [Hash] passed_params
   #

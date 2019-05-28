@@ -7,8 +7,8 @@ module Util
 
     # check whether give object is integer or not
     #
-    # * Author: Aniket
-    # * Date: 20/09/2018
+    # * Author:
+    # * Date:
     # * Reviewed By:
     #
     #  @return [Boolean] return true if object is integer
@@ -20,8 +20,8 @@ module Util
 
     # check whether give object is float or not
     #
-    # * Author: Aniket
-    # * Date: 20/09/2018
+    # * Author:
+    # * Date:
     # * Reviewed By:
     #
     #  @return [Boolean] return true if object is float
@@ -32,9 +32,9 @@ module Util
 
     # Is alpha numeric string
     #
-    # * Author: Aman
-    # * Date: 20/10/2017
-    # * Reviewed By: Sunil
+    # * Author:
+    # * Date:
+    # * Reviewed By:
     #
     # @return [Boolean] returns a boolean
     #
@@ -44,8 +44,8 @@ module Util
 
     # check whether give object is String or not
     #
-    # * Author: Aniket
-    # * Date: 20/09/2018
+    # * Author:
+    # * Date:
     # * Reviewed By:
     #
     #  @return [Boolean] return true if object is String
@@ -56,8 +56,8 @@ module Util
 
     # check whether give object is integer and >=1
     #
-    # * Author: Aniket
-    # * Date: 20/09/2018
+    # * Author:
+    # * Date:
     # * Reviewed By:
     #
     #  @return [Boolean] return true if object is integer
@@ -70,8 +70,8 @@ module Util
 
     # check whether give object is Hash or not
     #
-    # * Author: Aniket
-    # * Date: 26/09/2018
+    # * Author:
+    # * Date:
     # * Reviewed By:
     #
     #  @return [Boolean] return true if object is Hash
@@ -82,8 +82,8 @@ module Util
 
     # check whether give object is Array or not
     #
-    # * Author: Aniket
-    # * Date: 26/09/2018
+    # * Author:
+    # * Date:
     # * Reviewed By:
     #
     # @param kind(optional): value should be either integer or hash or boolean
@@ -117,9 +117,9 @@ module Util
 
     # Is a Boolean class or not
     #
-    # * Author: Puneet
-    # * Date: 10/10/2017
-    # * Reviewed By: Sunil
+    # * Author:
+    # * Date:
+    # * Reviewed By:
     #
     # @return [Boolean] returns a boolean
     #
@@ -132,9 +132,9 @@ module Util
 
     # Is the Email a Valid Email
     #
-    # * Author: Puneet
-    # * Date: 10/10/2017
-    # * Reviewed By: Sunil
+    # * Author:
+    # * Date:
+    # * Reviewed By:
     #
     # @return [Boolean] returns a boolean
     #
@@ -144,8 +144,8 @@ module Util
 
     # Is the Domain a Valid Domain Name
     #
-    # * Author: Tejas
-    # * Date: 31/10/2018
+    # * Author:
+    # * Date:
     # * Reviewed By:
     #
     # @return [Boolean] returns a boolean
