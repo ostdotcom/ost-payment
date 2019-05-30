@@ -15,8 +15,8 @@ class CreateTransactions < DbMigrationConnection
 
         t.timestamps
 
-        add_index :transactions, [:client_id, :customer_id, :payment_method_id], unique: true, name: 'client_id_customer_id_payment_method_id'
       end
+      add_index :transactions, [:client_id, :customer_id, :payment_method_id], unique: true, name: 'client_id_customer_id_payment_method_id'
     end
   end
 

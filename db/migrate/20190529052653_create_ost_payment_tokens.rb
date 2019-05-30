@@ -14,9 +14,8 @@ class CreateOstPaymentTokens < DbMigrationConnection
 
         t.timestamps
 
-        add_index :ost_payment_tokens, [:token], unique: true, name: 'token'
-
       end
+      add_index :ost_payment_tokens, [:token], unique: true, name: 'token'
     end
   end
 

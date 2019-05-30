@@ -9,8 +9,9 @@ class CreateCustomers < DbMigrationConnection
 
         t.timestamps
 
-        add_index :customers, [:client_id], unique: false, name: 'client_id'
+
       end
+      add_index :customers, [:client_id], unique: false, name: 'client_id'
 
     end
 

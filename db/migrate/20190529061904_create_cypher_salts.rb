@@ -10,8 +10,9 @@ class CreateCypherSalts < DbMigrationConnection
         t.column :salt, :blob, null: false
         t.timestamps
 
-        add_index :cypher_salts, [:entity_type,:entity_id], unique: true, name: 'entity_type_entity_id'
       end
+      add_index :cypher_salts, [:entity_type,:entity_id], unique: true, name: 'entity_type_entity_id'
+
     end
   end
 

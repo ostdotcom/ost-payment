@@ -11,9 +11,9 @@ class CreateGatewayTokens < DbMigrationConnection
         t.column :gateway_token, :string, limit: 8, null: false
 
         t.timestamps
-
-        add_index :gateway_tokens, [:ost_payment_token_id, :gateway_type], unique: true, name: 'ost_payment_token_id_gateway_type'
       end
+
+      add_index :gateway_tokens, [:ost_payment_token_id, :gateway_type], unique: true, name: 'ost_payment_token_id_gateway_type'
 
     end
   end

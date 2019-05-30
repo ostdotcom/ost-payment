@@ -14,9 +14,8 @@ class CreatePaymentMethods < DbMigrationConnection
         t.column :is_default, :boolean, limit: 8, null: true
 
         t.timestamps
-
-        add_index :payment_methods, [:client_id, :customer_id, :is_default], unique: true, name: 'client_id_customer_id_is_default'
       end
+      add_index :payment_methods, [:client_id, :customer_id, :is_default], unique: true, name: 'client_id_customer_id_is_default'
     end
   end
 

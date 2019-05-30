@@ -1,4 +1,4 @@
-class CreateBillingAddress < DbMigrationConnection
+class CreateBillingAddresses < DbMigrationConnection
 
   def up
     run_migration_for_db(EstablishOstPaymentClientDbConnection.config_key) do
@@ -9,8 +9,9 @@ class CreateBillingAddress < DbMigrationConnection
         t.column :details, :text, null: false
         t.timestamps
 
-        add_index :billing_addresses, [:payment_method_id], unique: true, name: 'payment_method_id'
       end
+      add_index :billing_addresses, [:payment_method_id], unique: true, name: 'payment_method_id'
+
     end
   end
 

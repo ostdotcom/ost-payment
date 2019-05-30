@@ -10,9 +10,10 @@ class CreateGatewayDetails < DbMigrationConnection
 
         t.timestamps
 
-        add_index :gateway_details, [:client_id, :gateway_type, :status], unique: false,
-                  name: 'client_id_gateway_type_status'
+
       end
+      add_index :gateway_details, [:client_id, :gateway_type, :status], unique: false,
+                name: 'client_id_gateway_type_status'
 
     end
 

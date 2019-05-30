@@ -11,9 +11,9 @@ class CreateGatewayCustomerAssociations < DbMigrationConnection
 
         t.timestamps
 
-        add_index :gateway_customer_associations, [:customer_id, :gateway_type], unique: true, name: 'customer_id_gateway_type'
-
       end
+
+      add_index :gateway_customer_associations, [:customer_id, :gateway_type], unique: true, name: 'customer_id_gateway_type'
     end
   end
 
