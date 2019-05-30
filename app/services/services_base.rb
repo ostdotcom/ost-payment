@@ -28,17 +28,6 @@ class ServicesBase
 
 
 
-  # Method to init gatewayclass based on gateway_name
-  #
-  # * Author:
-  # * Date: 09/10/2017
-  # * Reviewed By:
-  #
-  def initialize_gateway_class
-
-    gateway_type = @params[:gateway_type].titleize
-    @gateway_class = "Gateway::#{gateway_type}::GenerateGatewayToken".constantize
-  end
 
 
   # Method to get service params from yml file
