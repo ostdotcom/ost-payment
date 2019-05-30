@@ -1,0 +1,2 @@
+class OstPaymentToken < ApplicationRecord
+end

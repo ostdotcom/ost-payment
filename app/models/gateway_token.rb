@@ -1,0 +1,2 @@
+class GatewayToken < ApplicationRecord
+end

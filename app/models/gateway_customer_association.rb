@@ -1,0 +1,2 @@
+class GatewayCustomerAssociation < ApplicationRecord
+end

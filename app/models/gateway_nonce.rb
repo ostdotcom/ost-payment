@@ -1,0 +1,2 @@
+class GatewayNonce < ApplicationRecord
+end
