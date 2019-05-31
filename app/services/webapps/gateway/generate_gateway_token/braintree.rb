@@ -13,7 +13,6 @@ module Webapps
         def initialize(params)
           super(params)
           @braintree_gateway = ::Gateway::Braintree.new(@params)
-
         end
 
         # perform i.e calls generate_token of braintree gateway
@@ -26,7 +25,6 @@ module Webapps
 
           r = validate
           return r unless r.success?
-
           res = @braintree_gateway.generate_token({customer_id: @params[:customer_id]})
         end
 

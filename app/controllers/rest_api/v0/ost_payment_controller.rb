@@ -6,6 +6,12 @@ class RestApi::V0::OstPaymentController <  RestApi::V0::BaseController
     format_service_response
   end
 
+  def sale
+    @service_response = RestApi::Sale.new(params).perform
+    format_service_response
+
+  end
+
   private
 
   # Get formatter class

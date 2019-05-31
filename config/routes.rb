@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   scope '/api/v0', controller: 'rest_api/v0/ost_payment_controller' do
     post '/generate-token' => :generate_token
+    post '/sale' => :sale
   end
 
   scope '/api/v0/customer', controller: 'rest_api/v0/customer_controller' do
