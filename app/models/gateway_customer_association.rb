@@ -1,2 +1,4 @@
 class GatewayCustomerAssociation < EstablishOstPaymentClientDbConnection
+
+
 end

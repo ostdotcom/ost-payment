@@ -154,5 +154,21 @@ module Util
       domain_name =~ REGEX_DOMAIN_NAME
     end
 
+    # Is the url Valid
+    #
+    # * Author:
+    # * Date:
+    # * Reviewed By:
+    #
+    # @return [Boolean] returns a boolean
+    #
+    def self.is_valid_url?(url)
+      return false if !is_string?(url)
+      uri_value = URI.parse(url) rescue ""
+      return false if uri_value.blank? || (URI::HTTPS != uri_value.class) ||
+          !is_valid_domain?(uri_value.host)
+      true
+    end
+
   end
 end

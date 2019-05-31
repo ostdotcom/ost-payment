@@ -11,3 +11,8 @@ customer:
   get_by_id:
     key_template: 'customer_%{id}'
     expiry_in_seconds: 86400
+
+gateway_nonce:
+  get_by_uuid:
+    key_template: 'gateway_nonce_%{uuid}'
+    expiry_in_seconds: 86400

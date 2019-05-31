@@ -8,8 +8,12 @@ Rails.application.routes.draw do
   end
 
 
-  scope '/api', controller: 'rest_api/v0/ost_payment_controller' do
-    get '/generate-token' => :generate_token
+  scope '/api/v0', controller: 'rest_api/v0/ost_payment_controller' do
+    post '/generate-token' => :generate_token
+  end
+
+  scope '/api/v0/customer', controller: 'rest_api/v0/customer_controller' do
+    post '/' => :create_customer
   end
 
   match '/', to: 'application#not_found', via: :all

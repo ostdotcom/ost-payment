@@ -8,6 +8,7 @@ class Customer < EstablishOstPaymentClientDbConnection
   }
 
   after_commit :memcache_flush
+  include AttributeParserConcern
 
   # Get Key Object
   #

@@ -19,3 +19,16 @@
     - :client
   :optional:
     - :customer_id
+
+'RestApi::Customer::Create':
+  :mandatory:
+    - :client
+  :optional:
+    - :first_name
+    - :last_name
+    - :company
+    - :email
+    - :phone
+    - :fax
+    - :website
+    - :payment_nonce_uuid
