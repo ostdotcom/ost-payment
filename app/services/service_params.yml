@@ -19,7 +19,7 @@
   :mandatory:
     - :gateway_nonce
   :optional:
-    - :ost_payment_tokens_object
+    - :ost_payment_token
     - :gateway_type
 
 'RestApi::GenerateToken::GenerateGatewayToken::Braintree':

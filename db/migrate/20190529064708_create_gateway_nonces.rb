@@ -4,7 +4,7 @@ class CreateGatewayNonces < DbMigrationConnection
     run_migration_for_db(EstablishOstPaymentClientDbConnection.config_key) do
 
       create_table :gateway_nonces do |t|
-        t.column :uuid, :string, limit: 50, null: false
+        t.column :uuid, :string, limit: 70, null: false
         t.column :ost_payment_token_id, :integer, limit: 8, null: false
         t.column :nonce, :string, limit: 50, null: true
         t.column :payload, :text, null: true

@@ -14,7 +14,7 @@ module Webapps
       def initialize(params)
         super(params)
         @gateway_nonce = @params[:gateway_nonce]
-        @ost_payment_tokens_object = @params[:ost_payment_tokens_object]
+        @ost_payment_token = @params[:ost_payment_token]
         @gateway_type = @params[:gateway_type]
       end
 
@@ -67,7 +67,7 @@ module Webapps
         return error_with_identifier('invalid_api_params',
                                      'w_g_sn_vgn_2',
                                      ['invalid_gateway_type']
-        ) unless GatewayNonce.gateway_types.keys.include?(@gateway_type)
+        ) unless GlobalConstant::GatewayType.is_valid_gateway_type?(@gateway_type)
         success
       end
 
@@ -85,7 +85,7 @@ module Webapps
         puts "@gateway_type is : #{@gateway_type}"
         @gateway_nonce_record = GatewayNonce.new(
             uuid: get_uuid,
-            ost_payment_token_id: 1,#@ost_payment_tokens_object.id,
+            ost_payment_token_id: @ost_payment_token.id,
             nonce: @gateway_nonce,
             status: GlobalConstant::GatewayNonce.active_status,
             gateway_type: @gateway_type
@@ -103,9 +103,10 @@ module Webapps
       # @return [String]
       #
       def get_uuid
-        hex = SecureRandom.hex
-        timestamp = Time.now.to_i.to_s
-        return hex + timestamp
+        rand_no = rand.to_s[2..6].to_s #generate 5 digit random string
+        timestamp = Time.now.to_f.to_s
+
+        Digest::SHA256.hexdigest(rand_no + '-' + timestamp)
       end
 
       # Api Response
