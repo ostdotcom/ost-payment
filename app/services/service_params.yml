@@ -40,3 +40,17 @@
     - :fax
     - :website
     - :payment_nonce_uuid
+
+'RestApi::Customer::Create':
+  :mandatory:
+    - :client
+    - :id
+  :optional:
+    - :first_name
+    - :last_name
+    - :company
+    - :email
+    - :phone
+    - :fax
+    - :website
+    - :payment_nonce_uuid

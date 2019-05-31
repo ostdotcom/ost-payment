@@ -1,4 +1,4 @@
-module GatewayManagement::Customer::Create
+module GatewayManagement::Customer::Update
   class Base
 
     include Util::ResultHelper
@@ -8,8 +8,8 @@ module GatewayManagement::Customer::Create
       @client_id = params[:client_id]
       @customer = params[:customer]
       @gateway_nonce = params[:gateway_nonce]
+      @gateway_customer_association = params[:gateway_customer_association]
 
-      @gateway_customer_association = nil
     end
 
     # perform
@@ -24,10 +24,10 @@ module GatewayManagement::Customer::Create
       r = validate_and_sanitize
       return r unless r.success?
 
-      r = create_customer_in_gateway
+      r = update_customer_in_gateway
       return r unless r.success?
 
-      success_with_data({gateway_customer_association: @gateway_customer_association})
+      success
     end
 
     private
@@ -50,7 +50,7 @@ module GatewayManagement::Customer::Create
       success
     end
 
-    # Create a customer
+    # update a customer
     #
     # * Author: Aman
     # * Date: 30/05/2019
@@ -59,18 +59,11 @@ module GatewayManagement::Customer::Create
     # @return [Result::Base]
     #
     #
-    def create_customer_in_gateway
-      resp = gateway_client.create_customer(create_params)
+    def update_customer_in_gateway
+      resp = gateway_client.update_customer(update_params)
       return resp unless resp.success?
 
       puts(resp.inspect)
-      gateway_customer_id = resp.data[:result].customer.id
-
-      @gateway_customer_association = GatewayCustomerAssociation.create!(
-          customer_id: @customer.id,
-          gateway_type: gateway_type,
-          gateway_customer_id: gateway_customer_id
-      )
 
       success
     end
@@ -102,7 +95,7 @@ module GatewayManagement::Customer::Create
     end
 
 
-    # create_params for api call
+    # update_params for api call
     #
     # * Author: Aman
     # * Date: 30/05/2019
@@ -111,8 +104,8 @@ module GatewayManagement::Customer::Create
     # @return [String]
     #
     #
-    def create_params
-      fail 'unimplemented method create_params'
+    def update_params
+      fail 'unimplemented method update_params'
     end
 
   end

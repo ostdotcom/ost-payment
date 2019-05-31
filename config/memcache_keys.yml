@@ -21,3 +21,8 @@ gateway_detail:
   get_active_by_client_id_and_g_type:
     key_template: 'gateway_detail_%{client_id}_%{gateway_type}'
     expiry_in_seconds: 86400
+
+gateway_customer_association:
+  get_all_by_customer_id:
+    key_template: 'gateway_customer_association_all_active_%{customer_id}'
+    expiry_in_seconds: 86400

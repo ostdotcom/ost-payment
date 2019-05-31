@@ -8,6 +8,7 @@ class CreateGatewayCustomerAssociations < DbMigrationConnection
         t.column :customer_id, :integer, limit: 8, null: false
         t.column :gateway_type, :tinyint, limit: 2, null: false
         t.column :gateway_customer_id, :integer, limit: 8, null: false
+        t.column :status, :tinyint, limit: 2, null: false
 
         t.timestamps
 
