@@ -44,6 +44,16 @@ namespace :onetimer do
 
                             })
 
+    g_details = {
+        merchant_id: "bfjnzfmjnp447nk7",
+        public_key: "4mx9s3tpjdy78pw5",
+        private_key: "d0a75f3c55ec37939524d8bbebf4d66f"
+    }
+
+    GatewayDetail.create({client_id: client_id,
+                          gateway_type: GlobalConstant::GatewayType.braintree_gateway_type,
+                          status: GlobalConstant::GatewayDetail.active_status,
+                          details: g_details})
     puts "Client Setup complete"
 
   end

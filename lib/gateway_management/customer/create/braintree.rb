@@ -1,4 +1,4 @@
-module GatewayManagement::CreateCustomer
+module GatewayManagement::Customer::Create
   class Braintree < Base
 
     def initialize(params)
@@ -44,7 +44,7 @@ module GatewayManagement::CreateCustomer
     #
     #
     def create_params
-      customer.details
+      @customer.details
     end
 
 

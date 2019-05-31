@@ -8,7 +8,7 @@ module Gateway
     def validate_params(params, expected_params)
       final_params = {}
       missing_mandatory_params = []
-      expected_params[:mandatory].each do |field|
+      (expected_params[:mandatory] || []).each do |field|
         missing_mandatory_params << field unless params.key?(field)
       end
 
@@ -20,7 +20,7 @@ module Gateway
           {}
       ) if missing_mandatory_params.any?
 
-      partially_required_params = expected_params[:partially_required][:fields]
+      partially_required_params = (expected_params[:partially_required] || {})[:fields] || {}
 
       return error_with_data(
           'mpm_2',
@@ -29,10 +29,10 @@ module Gateway
           GlobalConstant::ErrorAction.default,
           {}
       ) unless (params.keys - partially_required_params.keys).length <=
-          (params.keys.length - expected_params[:partially_required][:min])
+          (params.keys.length - (expected_params[:partially_required] || {})[:min].to_i)
 
-      valid_params = expected_params[:mandatory] + expected_params[:optional] +
-          expected_params[:partially_required][:fields]
+      valid_params = (expected_params[:mandatory] || []) + (expected_params[:optional] || []) +
+          ((expected_params[:partially_required]|| {})[:fields] || [])
 
       valid_params.each do |field|
         final_params[field] = params[field]
