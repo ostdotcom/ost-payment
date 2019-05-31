@@ -18,6 +18,6 @@ gateway_nonce:
     expiry_in_seconds: 86400
 
 gateway_detail:
-  get_active_by_c_id_and_g_type:
+  get_active_by_client_id_and_g_type:
     key_template: 'gateway_detail_%{client_id}_%{gateway_type}'
     expiry_in_seconds: 86400

@@ -10,7 +10,7 @@ class GatewayNonce < EstablishOstPaymentClientDbConnection
 
   after_commit :memcache_flush
 
-  has_one :ost_payment_token
+  belongs_to :ost_payment_token
 
   # Get Key Object
   #

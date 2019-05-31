@@ -1,4 +1,4 @@
-module GatewayManagement::CreateCustomer
+module GatewayManagement::Customer::Create
   class Base
 
     include Util::ResultHelper
@@ -59,17 +59,19 @@ module GatewayManagement::CreateCustomer
     #
     def create_customer_in_gateway
       resp = gateway_client.create_customer(create_params)
-      gateway_customer_id = resp.id
+      return resp unless resp.success?
 
-      @gateway_customer_association = GatewayCustomerAssociation.create(
+      puts(resp.inspect)
+      gateway_customer_id = resp.data[:result].customer.id
+
+      @gateway_customer_association = GatewayCustomerAssociation.create!(
           customer_id: @customer.id,
-          gateway_type: @gateway_nonce.gateway_type,
+          gateway_type: gateway_type,
           gateway_customer_id: gateway_customer_id
       )
 
       success
     end
-
 
     # gateway type
     #
@@ -146,8 +148,6 @@ module GatewayManagement::CreateCustomer
     def create_params
       fail 'unimplemented method create_params'
     end
-
-
 
   end
 end

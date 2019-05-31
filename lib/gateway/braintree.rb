@@ -16,9 +16,9 @@ module Gateway
       #
       #
       def initialize(params)
-        @merchant_id = "bfjnzfmjnp447nk7" #params[:merchant_id]
-        @public_key = "4mx9s3tpjdy78pw5" #params[:public_key]
-        @private_key = "d0a75f3c55ec37939524d8bbebf4d66f" #params[:private_key]
+        @merchant_id = params[:merchant_id] || "bfjnzfmjnp447nk7"
+        @public_key = params[:public_key] || "4mx9s3tpjdy78pw5"
+        @private_key = params[:private_key] || "d0a75f3c55ec37939524d8bbebf4d66f"
 
         # gateway = Braintree::Gateway.new(
         #     :environment => :sandbox,
@@ -26,8 +26,6 @@ module Gateway
         #     :public_key => "4mx9s3tpjdy78pw5",
         #     :private_key => "d0a75f3c55ec37939524d8bbebf4d66f",
         #     )
-
-
 
         initialize_braintree_obj
       end

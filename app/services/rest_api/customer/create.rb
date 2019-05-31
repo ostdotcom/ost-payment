@@ -100,26 +100,26 @@ module RestApi
         error_identifiers = []
 
         error_identifiers << 'invalid_first_name' if @first_name.present? &&
-            !Util::CommonValidateAndSanitize.is_string?(@first_name) && @first_name.length > 255
+            (!Util::CommonValidateAndSanitize.is_string?(@first_name) || @first_name.length > 255)
 
         error_identifiers << 'invalid_last_name' if @last_name.present? &&
-            !Util::CommonValidateAndSanitize.is_string?(@last_name) && @last_name.length > 255
+            (!Util::CommonValidateAndSanitize.is_string?(@last_name) || @last_name.length > 255)
 
         error_identifiers << 'invalid_company' if @company.present? &&
-            !Util::CommonValidateAndSanitize.is_string?(@company) && @company.length > 255
+            (!Util::CommonValidateAndSanitize.is_string?(@company) || @company.length > 255)
 
         error_identifiers << 'invalid_email' if @email.present? &&
-            !Util::CommonValidateAndSanitize.is_valid_email?(@email)
+            (!Util::CommonValidateAndSanitize.is_valid_email?(@email))
 
 
         error_identifiers << 'invalid_phone' if @phone.present? &&
-            !Util::CommonValidateAndSanitize.is_string?(@phone) && @phone.length > 255
+            (!Util::CommonValidateAndSanitize.is_string?(@phone) || @phone.length > 255)
 
         error_identifiers << 'invalid_fax' if @fax.present? &&
-            !Util::CommonValidateAndSanitize.is_string?(@fax) && @fax.length > 255
+            (!Util::CommonValidateAndSanitize.is_string?(@fax) || @fax.length > 255)
 
         error_identifiers << 'invalid_website' if @website.present? &&
-            !Util::CommonValidateAndSanitize.is_valid_domain?(@website) && @website.length > 255
+            (!Util::CommonValidateAndSanitize.is_valid_domain?(@website) || @website.length > 255)
 
 
         return error_with_identifier('invalid_api_params',
@@ -127,13 +127,13 @@ module RestApi
                                      error_identifiers
         ) if error_identifiers.present?
 
-        @customer_details[:first_name] = @first_name
-        @customer_details[:last_name] = @last_name
-        @customer_details[:company] = @company
-        @customer_details[:email] = @email
-        @customer_details[:phone] = @phone
-        @customer_details[:fax] = @fax
-        @customer_details[:website] = @website
+        @customer_details[:first_name] = @first_name if @first_name.present?
+        @customer_details[:last_name] = @last_name if @last_name.present?
+        @customer_details[:company] = @company if @company.present?
+        @customer_details[:email] = @email if @email.present?
+        @customer_details[:phone] = @phone if @phone.present?
+        @customer_details[:fax] = @fax if @fax.present?
+        @customer_details[:website] = @website if @website.present?
 
         success
       end
@@ -159,12 +159,18 @@ module RestApi
 
 
         @gateway_nonce = GatewayNonce.get_from_memcache(@payment_nonce_uuid)
-        @ost_payment_token = @gateway_nonce.ost_payment_token
 
         return error_with_identifier('invalid_api_params',
                                      'ra_c_c_vpnu_2',
                                      ['invalid_payment_nonce_uuid']
-        ) if @gateway_nonce.blank? || (@ost_payment_token.client_id != @client.id) ||
+        ) if @gateway_nonce.blank?
+
+        @ost_payment_token = @gateway_nonce.ost_payment_token
+
+        return error_with_identifier('invalid_api_params',
+                                     'ra_c_c_vpnu_3',
+                                     ['invalid_payment_nonce_uuid']
+        ) if (@ost_payment_token.client_id != @client.id) ||
             (@gateway_nonce.status != GlobalConstant::GatewayNonce.active_status) ||
             (@ost_payment_token.customer_id.present?)
 
@@ -183,10 +189,11 @@ module RestApi
       # Sets customer
       #
       def create_customer
-        @customer = Customer.create(client_id: @client.id,
-                                    status: GlobalConstant::Customer.active_status,
-                                    details: @customer_details
+        @customer = ::Customer.create!(client_id: @client.id,
+                                       status: GlobalConstant::Customer.active_status,
+                                       details: @customer_details
         )
+        success
       end
 
       # Create a customer
@@ -202,7 +209,7 @@ module RestApi
       def create_customer_in_gateway
         return success if @payment_nonce_uuid.blank?
 
-        r = "GatewayManagement::CreateCustomer::#{@gateway_nonce.gateway_type.camelize}".constantize.
+        r = "GatewayManagement::Customer::Create::#{@gateway_nonce.gateway_type.camelize}".constantize.
             new(customer: @customer, client_id: @client.id).perform
 
         return r unless r.success?
@@ -224,7 +231,8 @@ module RestApi
       def service_response_data
 
         {
-            customer: @customer.get_hash
+            customer: @customer.get_hash,
+            gateway_customer_association: @gateway_customer_association.get_hash
         }
 
       end
