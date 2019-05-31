@@ -11,11 +11,20 @@ module Webapps
       # * Date: 31/05/2019
       # * Reviewed By:
       #
+      # @param [Integer] gateway_nonce (optional) - gateway nonce
+      # @param [AR] ost_payment_token (mandatory) - ost payment token obj
+      # @param [Integer] gateway_type (optional) - gateway type
+      #
+      # Sets @gateway_nonce_record
+      #
+      # @return [Webapps::Gateway::SaveNonce]
+      #
       def initialize(params)
         super(params)
         @gateway_nonce = @params[:gateway_nonce]
         @ost_payment_token = @params[:ost_payment_token]
         @gateway_type = @params[:gateway_type]
+        @gateway_nonce_record = nil
       end
 
       # Perform
@@ -27,16 +36,35 @@ module Webapps
       # @return [Result::Base]
       #
       def perform
-        r = validate_gateway_nonce
-        return r unless r.success?
-
-        r = validate_gateway_type
+        r = validate_and_sanitize
         return r unless r.success?
 
         r = create_entry_in_gateway_nonce
         return r unless r.success?
 
         success_with_data(api_response)
+      end
+
+
+      # Validate and sanitize
+      #
+      # * Author: Aman
+      # * Date: 30/05/2019
+      # * Reviewed By:
+      #
+      # @return [Result::Base]
+      #
+      def validate_and_sanitize
+        r = validate
+        return r unless r.success?
+
+        r = validate_gateway_nonce
+        return r unless r.success?
+
+        r = validate_gateway_type
+        return r unless r.success?
+
+        success
       end
 
       # Validate Gateway Nonce
@@ -82,7 +110,6 @@ module Webapps
       # @return [Result::Base]
       #
       def create_entry_in_gateway_nonce
-        puts "@gateway_type is : #{@gateway_type}"
         @gateway_nonce_record = GatewayNonce.new(
             uuid: get_uuid,
             ost_payment_token_id: @ost_payment_token.id,
