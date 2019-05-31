@@ -5,3 +5,11 @@ missing_api_key:
 missing_api_secret:
   parameter: "api_secret"
   msg: "Api Secret is mandatory."
+
+invalid_gateway_nonce:
+  parameter: "gateway_nonce"
+  msg: "Gateway Nonce is invalid."
+
+invalid_gateway_type:
+  parameter: "gateway_type"
+  msg: "Gateway Type is invalid."
