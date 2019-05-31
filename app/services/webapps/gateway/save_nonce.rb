@@ -11,9 +11,9 @@ module Webapps
       # * Date: 31/05/2019
       # * Reviewed By:
       #
-      # @param [Integer] gateway_nonce (optional) - gateway nonce
+      # @param [String] gateway_nonce (mandatory) - gateway nonce
       # @param [AR] ost_payment_token (mandatory) - ost payment token obj
-      # @param [Integer] gateway_type (optional) - gateway type
+      # @param [String] gateway_type (mandatory) - gateway type
       #
       # Sets @gateway_nonce_record
       #
