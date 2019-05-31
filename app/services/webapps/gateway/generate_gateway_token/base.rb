@@ -5,14 +5,11 @@ module Webapps
       class Base < ServicesBase
 
         def initialize(params)
-          puts "Paramssss #{params}"
           super(params)
-          @braintree_gateway = Gateway::Braintree.new(@params)
-
         end
 
         def perform
-
+          raise "Child needs to implement this"
         end
 
       end

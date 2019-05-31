@@ -13,7 +13,6 @@ class ServicesBase
   def initialize(service_params={})
     service_klass = self.class.to_s
     service_params_list = ServicesBase.get_service_params(service_klass)
-    puts "self.class.to_s #{self.class.to_s}"
 
     # passing only the mandatory and optional params to a service
     permitted_params_list = ((service_params_list[:mandatory] || []) + (service_params_list[:optional] || [])) || []

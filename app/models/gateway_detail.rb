@@ -32,7 +32,8 @@ class GatewayDetail < EstablishOstPaymentClientDbConnection
   # * Date: 30/05/2019
   # * Reviewed By:
   #
-  # @param [Integer] user_id - user id
+  # @param [Integer] client_id - user id
+  # @param [Integer] gateway_type - gateway_type
   #
   # @return [AR] User object
   #

@@ -8,43 +8,53 @@ module Gateway
       # * Date:
       # * Reviewed By:
       #
-      # @param [AR] client (mandatory) - client obj
-      #
-      # Sets gateway_nonce, ost_payment_token
-      #
-      # @return [Gateway::Braintree]
-      #
-      #
       def initialize(params)
-        @merchant_id = params[:merchant_id] || "bfjnzfmjnp447nk7"
-        @public_key = params[:public_key] || "4mx9s3tpjdy78pw5"
-        @private_key = params[:private_key] || "d0a75f3c55ec37939524d8bbebf4d66f"
 
-        # gateway = Braintree::Gateway.new(
-        #     :environment => :sandbox,
-        #     :merchant_id => "bfjnzfmjnp447nk7",
-        #     :public_key => "4mx9s3tpjdy78pw5",
-        #     :private_key => "d0a75f3c55ec37939524d8bbebf4d66f",
-        #     )
+        gateway_details = params[:gateway_details]
+        @merchant_id =  gateway_details[:merchant_id]
+        @public_key = gateway_details[:public_key]
+        @private_key = gateway_details[:private_key]
+        @environment = gateway_details[:environment]
 
         initialize_braintree_obj
+
       end
 
+      # initialize braintree obj
+      #
+      # * Author: Mayur
+      # * Date: 31/05/2019
+      # * Reviewed By
+      #
       def initialize_braintree_obj
         @gateway = ::Braintree::Gateway.new(
-            :environment => :sandbox,
+            :environment => @environment,
             :merchant_id => @merchant_id,
             :public_key => @public_key,
             :private_key => @private_key
         )
       end
 
+      #
+      # generate_token
+      #
+      # * Author: Mayur
+      # * Date: 31/05/2019
+      # * Reviewed By
+      #
       def generate_token(params)
         g_t_params = params[:customer_id].present? ? {customer_id: params[:customer_id]} : {}
         gateway_token = @gateway.client_token.generate(g_t_params)
         success_with_data({gateway_token: gateway_token})
       end
 
+      #
+      # create payment method
+      #
+      # * Author: Mayur
+      # * Date: 31/05/2019
+      # * Reviewed By
+      #
       def create_payment_method(params)
         r = validate_params(params, {mandatory: [:customer_id, :nonce]})
 
@@ -57,6 +67,13 @@ module Gateway
         success_with_data({result: result})
       end
 
+      #
+      # update payment method
+      #
+      # * Author: Mayur
+      # * Date: 31/05/2019
+      # * Reviewed By
+      #
       def update_payment_method(params)
         r = validate_params(params, {mandatory: [:payment_method_token],
                                      optional: [:billing_address]})
@@ -77,6 +94,14 @@ module Gateway
         success_with_data({result: result})
       end
 
+
+      #
+      # sale
+      #
+      # * Author: Mayur
+      # * Date: 31/05/2019
+      # * Reviewed By
+      #
       def sale(params)
         r = validate_params(params, {mandatory: [:amount],
                                      partially_required: {min: 1, fields:
@@ -90,9 +115,15 @@ module Gateway
             params
         )
         success_with_data({result: result})
-
       end
 
+      #
+      # create customer
+      #
+      # * Author: Mayur
+      # * Date: 31/05/2019
+      # * Reviewed By
+      #
       def create_customer(params)
         r = validate_params(params, {optional: [:id, :first_name, :last_name, :comapny, :email, :phone, :fax, :website, :payment_method_nonce,:credit_card, :custom_fields]})
         return r unless r.success?
