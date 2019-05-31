@@ -7,6 +7,8 @@ class GatewayDetail < EstablishOstPaymentClientDbConnection
       GlobalConstant::GatewayDetail.inactive_status => 2
   }
 
+  enum gateway_type: GlobalConstant::GatewayType.gateway_types_enum
+
   attr_accessor :decrypted_details
 
   after_commit :memcache_flush

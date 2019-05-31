@@ -6,6 +6,8 @@ class GatewayNonce < EstablishOstPaymentClientDbConnection
       GlobalConstant::GatewayNonce.inactive_status => 3
   }
 
+  enum gateway_type: GlobalConstant::GatewayType.gateway_types_enum
+
   after_commit :memcache_flush
 
   has_one :ost_payment_token

@@ -202,19 +202,17 @@ module RestApi
       def create_customer_in_gateway
         return success if @payment_nonce_uuid.blank?
 
-        @gateway_customer_id = nil
+        r = "GatewayManagement::CreateCustomer::#{@gateway_nonce.gateway_type.camelize}".constantize.
+            new(customer: @customer, client_id: @client.id).perform
 
-        # create customer using factory
+        return r unless r.success?
 
-        @gateway_customer_association = GatewayCustomerAssociation.create(
-            customer_id: @customer.id,
-            gateway_type: @gateway_nonce.gateway_type,
-            gateway_customer_id: @gateway_customer_id
-        )
+        @gateway_customer_association = r.data[:gateway_customer_association]
 
         @gateway_nonce.status = GlobalConstant::GatewayNonce.used_status
         @gateway_nonce.save!
 
+        success
       end
 
       # Format service response
