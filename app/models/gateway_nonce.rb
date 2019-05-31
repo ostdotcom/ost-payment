@@ -1,2 +1,2 @@
-class GatewayNonce < ApplicationRecord
+class GatewayNonce < EstablishOstPaymentClientDbConnection
 end

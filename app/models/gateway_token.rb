@@ -1,2 +1,2 @@
-class GatewayToken < ApplicationRecord
+class GatewayToken < EstablishOstPaymentClientDbConnection
 end

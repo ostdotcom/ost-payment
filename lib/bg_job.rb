@@ -63,8 +63,8 @@ class BgJob
 
   # Perform the job synchronously
   #
-  # * Author: Bala
-  # * Date: 11/10/2017
+  # * Author:
+  # * Date:
   #
   # @param [Constant] klass Class name
   # @param [Hash] enqueue_params parameters to be pushed to queue

@@ -1,2 +1,2 @@
-class BillingAddress < ApplicationRecord
+class BillingAddress < EstablishOstPaymentClientDbConnection
 end

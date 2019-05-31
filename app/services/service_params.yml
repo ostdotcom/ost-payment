@@ -3,3 +3,9 @@
     - :gateway_type
   :optional:
     - :customer_id
+
+'RestApi::GenerateToken':
+  :mandatory:
+    - :client
+  :optional:
+    - :customer_id
