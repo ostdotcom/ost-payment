@@ -1,0 +1,5 @@
+'Webapps::Gateway::Factory::GenerateGatewayToken':
+  :mandatory:
+    - :gateway_type
+  :optional:
+    - :customer_id

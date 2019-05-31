@@ -89,43 +89,6 @@ class ServicesBase
     success
   end
 
-  # fetch client and validate
-  #
-  # * Author: Aman
-  # * Date: 26/12/2017
-  # * Reviewed By:
-  #
-  # Sets @client
-  #
-  # @return [Result::Base]
-  #
-  def fetch_and_validate_client
-    @client = Client.get_from_memcache(@client_id)
-
-    return error_with_identifier('invalid_client_id','sb_2') if
-        @client.blank? || @client.status != GlobalConstant::Client.active_status
-
-    success
-  end
-
-  # fetch admin and validate
-  #
-  # * Author: Aman
-  # * Date: 24/04/2018
-  # * Reviewed By:
-  #
-  # Sets @admin
-  #
-  # @return [Result::Base]
-  #
-  def fetch_and_validate_admin
-    @admin = Admin.get_from_memcache(@admin_id)
-
-    return error_with_identifier('invalid_admin_id','sb_3') if
-        @admin.status != GlobalConstant::Admin.active_status
-
-    success
-  end
 
   # Unauthorized request
   #
@@ -139,22 +102,5 @@ class ServicesBase
     error_with_identifier("unauthorized_access", internal_error_code)
   end
 
-  # Invalid User access response
-  #
-  # * Author: Aman
-  # * Date: 03/05/2018
-  # * Reviewed By:
-  #
-  # @return [Result::Base]
-  #
-  def unauthorized_access_response_for_web(err, display_text)
-    error_with_data(
-        err,
-        display_text,
-        display_text,
-        GlobalConstant::ErrorAction.default,
-        {}
-    )
-  end
 
 end
