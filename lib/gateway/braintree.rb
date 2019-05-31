@@ -1,9 +1,20 @@
-module Billing
+module Gateway
 
-  module Gateways
+    class Braintree < Base
 
-    class BraintreeGateway < Base
-
+      # Initialize
+      #
+      # * Author:
+      # * Date:
+      # * Reviewed By:
+      #
+      # @param [AR] client (mandatory) - client obj
+      #
+      # Sets gateway_nonce, ost_payment_token
+      #
+      # @return [Gateway::Braintree]
+      #
+      #
       def initialize(params)
         @merchant_id = "bfjnzfmjnp447nk7" #params[:merchant_id]
         @public_key = "4mx9s3tpjdy78pw5" #params[:public_key]
@@ -95,5 +106,3 @@ module Billing
     end
 
   end
-
-end

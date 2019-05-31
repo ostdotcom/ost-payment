@@ -7,7 +7,7 @@ module Webapps
         def initialize(params)
           puts "Paramssss #{params}"
           super(params)
-          @braintree_gateway = Billing::Gateways::BraintreeGateway.new(@params)
+          @braintree_gateway = Gateway::Braintree.new(@params)
 
         end
 

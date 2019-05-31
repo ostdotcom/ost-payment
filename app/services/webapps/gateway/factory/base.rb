@@ -10,7 +10,7 @@ module Webapps
         end
 
 
-        # Method to init gatewayclass based on gateway_name
+        # Method to init gatewayclass based on gateway_type
         #
         # * Author:
         # * Date: 09/10/2017

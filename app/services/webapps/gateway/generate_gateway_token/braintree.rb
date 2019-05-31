@@ -4,9 +4,7 @@ module Webapps
       class Braintree < Base
 
         def initialize(params)
-
           super(params)
-
         end
 
         def perform
