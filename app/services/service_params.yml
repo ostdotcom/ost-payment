@@ -19,7 +19,7 @@
   :mandatory:
     - :gateway_nonce
   :optional:
-    - :ost_payment_tokens_object
+    - :ost_payment_token
     - :gateway_type
 
 'RestApi::GenerateToken::GenerateGatewayToken::Braintree':
@@ -31,6 +31,20 @@
 'RestApi::Customer::Create':
   :mandatory:
     - :client
+  :optional:
+    - :first_name
+    - :last_name
+    - :company
+    - :email
+    - :phone
+    - :fax
+    - :website
+    - :payment_nonce_uuid
+
+'RestApi::Customer::Create':
+  :mandatory:
+    - :client
+    - :id
   :optional:
     - :first_name
     - :last_name

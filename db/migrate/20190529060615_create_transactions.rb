@@ -9,9 +9,9 @@ class CreateTransactions < DbMigrationConnection
         t.column :customer_id, :integer, limit: 8, null: true
         t.column :gateway_transaction_id, :integer, limit: 8, null: false
         t.column :payment_method_id, :integer, limit: 8, null: false
-        t.column :transaction_time, :integer, limit: 8, null: false
-        t.column :transaction_info, :text, null: true
-        t.column :transaction_status, :tinyint, limit: 2, null: false
+        t.column :timestamp, :integer, limit: 8, null: false
+        t.column :info, :text, null: true
+        t.column :status, :tinyint, limit: 2, null: false
 
         t.timestamps
 
