@@ -18,7 +18,7 @@ module GlobalConstant
       end
 
       def is_valid_gateway_type?(gateway_type)
-        GatewayNonce.gateway_types.keys.include?(gateway_type) && Util::CommonValidateAndSanitize.is_string?(gateway_type)
+        GlobalConstant::GatewayType.gateway_types_enum.keys.include?(gateway_type) && Util::CommonValidateAndSanitize.is_string?(gateway_type)
       end
 
     end

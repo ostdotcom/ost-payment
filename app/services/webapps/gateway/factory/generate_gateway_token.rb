@@ -12,28 +12,9 @@ module Webapps
           super
         end
 
-
-
-
       end
 
     end
   end
 end
 
-
-# class Webapps::Gateway::Factory::GenerateGatewayToken < Webapps::Gateway::Factory::Base
-#
-#   def initialize(params)
-#     super(params)
-#
-#     initialize_gateway_class
-#
-#   end
-#
-#   def perform
-#     super
-#   end
-#
-#
-# end

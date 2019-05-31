@@ -1,18 +1,18 @@
 'Webapps::Gateway::Factory::GenerateGatewayToken':
   :mandatory:
     - :gateway_type
+    - :ost_payment_tokens_object
   :optional:
     - :customer_id
 
-#'Webapps::Gateway::GenerateToken::GenerateGatewayToken::Base':
-#  :mandatory:
-#  :optional:
-#    - :customer_id
 
 'Webapps::Gateway::GenerateGatewayToken::Braintree':
   :mandatory:
+    - :gateway_details
   :optional:
     - :customer_id
+
+
     -
 
 'Webapps::Gateway::SaveNonce':
