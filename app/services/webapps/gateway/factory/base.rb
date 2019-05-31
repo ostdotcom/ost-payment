@@ -19,7 +19,10 @@ module Webapps
         def initialize_gateway_class
 
           gateway_type = @params[:gateway_type].titleize
+
           @gateway_class = "Webapps::Gateway::#{self.class.name.split('::').last}::#{gateway_type}".constantize
+          puts "@gateway_class@gateway_class #{@gateway_class}"
+
         end
 
 

@@ -10,7 +10,8 @@ module Webapps
         end
 
         def perform
-          @braintree_gateway.client_token.generate({customer_id: @params[:customer_id]})
+          res = @braintree_gateway.generate_token({customer_id: @params[:customer_id]})
+          puts "#{res.inspect},........ res"
         end
 
       end

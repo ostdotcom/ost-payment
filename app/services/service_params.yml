@@ -4,7 +4,17 @@
   :optional:
     - :customer_id
 
-'RestApi::GenerateToken':
+#'Webapps::Gateway::GenerateToken::GenerateGatewayToken::Base':
+#  :mandatory:
+#  :optional:
+#    - :customer_id
+
+'Webapps::Gateway::GenerateGatewayToken::Braintree':
+  :mandatory:
+  :optional:
+    - :customer_id
+    -
+'RestApi::GenerateToken::GenerateGatewayToken::Braintree':
   :mandatory:
     - :client
   :optional:

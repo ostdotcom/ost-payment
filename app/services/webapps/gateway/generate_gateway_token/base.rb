@@ -5,6 +5,7 @@ module Webapps
       class Base < ServicesBase
 
         def initialize(params)
+          puts "Paramssss #{params}"
           super(params)
           @braintree_gateway = Billing::Gateways::BraintreeGateway.new(@params)
 

@@ -4,6 +4,10 @@ module Billing
 
     class Base
 
+      include Util::ResultHelper
+
+
+
       def validate_params(params, expected_params)
         final_params = {}
         missing_mandatory_params = []

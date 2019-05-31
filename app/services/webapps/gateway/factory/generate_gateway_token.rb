@@ -6,8 +6,6 @@ module Webapps
         def initialize(params)
           super(params)
 
-          initialize_gateway_class
-
         end
 
         def perform
