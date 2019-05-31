@@ -6,6 +6,11 @@ class RestApi::V0::CustomerController <  RestApi::V0::BaseController
     format_service_response
   end
 
+  def update_customer
+    @service_response = RestApi::Customer::Update.new(params).perform
+    format_service_response
+  end
+
   private
 
   # Get formatter class

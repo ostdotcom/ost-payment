@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   end
 
   scope '/api/v0/customer', controller: 'rest_api/v0/customer_controller' do
-    post '/' => :customer
+    post '/' => :create_customer
+    post '/:id' => :update_customer
   end
 
   match '/', to: 'application#not_found', via: :all

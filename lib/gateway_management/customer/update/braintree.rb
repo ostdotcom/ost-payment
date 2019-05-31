@@ -1,4 +1,4 @@
-module GatewayManagement::Customer::Create
+module GatewayManagement::Customer::Update
   class Braintree < Base
 
     def initialize(params)
@@ -43,9 +43,10 @@ module GatewayManagement::Customer::Create
     # @return [String]
     #
     #
-    def create_params
+    def update_params
       cp = @customer.details
-      cp[:payment_method_nonce] = @gateway_nonce.nonce if @gateway_nonce.present?
+      cp[:id] = @gateway_customer_association.gateway_customer_id
+      cp[:payment_method_nonce] = @gateway_nonce if @gateway_nonce.present?
       cp
     end
 
