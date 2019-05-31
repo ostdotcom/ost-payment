@@ -5,10 +5,12 @@ module Webapps
 
         def initialize(params)
 
+          super(params)
+
         end
 
         def perform
-
+          @braintree_gateway.client_token.generate({customer_id: @params[:customer_id]})
         end
 
       end

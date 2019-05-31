@@ -6,6 +6,7 @@ module Webapps
 
         def initialize(params)
           super(params)
+          @braintree_gateway = Billing::Gateways::BraintreeGateway.new(@params)
 
         end
 
