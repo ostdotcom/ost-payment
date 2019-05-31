@@ -1,2 +1,2 @@
-class PaymentMethod < ApplicationRecord
+class PaymentMethod < EstablishOstPaymentClientDbConnection
 end

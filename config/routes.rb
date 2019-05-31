@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   end
 
 
+  scope '/api', controller: 'rest_api/v0/ost_payment_controller' do
+    get '/generate-token' => :generate_token
+  end
+
   match '/', to: 'application#not_found', via: :all
   match '*permalink', to: 'application#not_found', via: :all
 

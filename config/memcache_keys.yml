@@ -6,3 +6,8 @@ client:
   api_key_details:
     key_template: 'client_api_key_detail_%{api_key}'
     expiry_in_seconds: 86400
+
+customer:
+  get_by_id:
+    key_template: 'customer_%{id}'
+    expiry_in_seconds: 86400

@@ -1,2 +1,2 @@
-class GatewayDetail < ApplicationRecord
+class GatewayDetail < EstablishOstPaymentClientDbConnection
 end

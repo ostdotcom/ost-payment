@@ -1,2 +1,2 @@
-class CypherSalt < ApplicationRecord
+class CypherSalt < EstablishOstPaymentClientDbConnection
 end
