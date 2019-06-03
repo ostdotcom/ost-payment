@@ -29,9 +29,9 @@
 'Webapps::Gateway::SaveNonce':
   :mandatory:
     - :gateway_nonce
-  :optional:
     - :ost_payment_token
     - :gateway_type
+  :optional:
 
 'RestApi::GenerateToken::GenerateGatewayToken::Braintree':
   :mandatory:
