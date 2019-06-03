@@ -85,7 +85,7 @@ module GatewayManagement::Customer::Create
     #
     #
     def gateway_client
-      @gateway_client ||= get_gateway_client(@client_id, gateway_type)
+      @gateway_client ||= get_gateway_client({client_id: @client_id, gateway_type: gateway_type})
     end
 
     # gateway type

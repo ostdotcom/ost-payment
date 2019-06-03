@@ -15,13 +15,14 @@
 'Webapps::Gateway::Factory::GenerateGatewayToken':
   :mandatory:
     - :gateway_type
-    - :ost_payment_tokens_object
+    - :ost_payment_token
   :optional:
     - :customer_id
 
 'Webapps::Gateway::GenerateGatewayToken::Braintree':
   :mandatory:
-    - :gateway_details
+    - :gateway_detail
+    - :ost_payment_token
   :optional:
     - :customer_id
 

@@ -101,7 +101,8 @@ module RestApi
         return error_with_identifier('invalid_api_params',
                                      'ra_c_u_vci_2',
                                      ['invalid_id']
-        ) if @customer.blank?
+        ) if @customer.blank? || @customer.status != GlobalConstant::Customer.active_status ||
+            @customer.client_id != @client.id
 
         success
       end
@@ -135,7 +136,6 @@ module RestApi
       #
       def get_gateway_customer_association
         @gateway_customer_associations = GatewayCustomerAssociation.get_all_from_memcache(@id).index_by(&:gateway_type)
-
       end
 
       # Create a customer

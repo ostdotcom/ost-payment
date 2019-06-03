@@ -24,9 +24,5 @@ class Webapps::V0::GatewayController < Webapps::V0::BaseController
     render_api_response(service_response)
   end
 
-  def cors_handling
-
-  end
-
 
 end
