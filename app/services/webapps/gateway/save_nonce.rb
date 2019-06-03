@@ -24,6 +24,7 @@ module Webapps
         @gateway_nonce = @params[:gateway_nonce]
         @ost_payment_token = @params[:ost_payment_token]
         @gateway_type = @params[:gateway_type]
+
         @gateway_nonce_record = nil
       end
 

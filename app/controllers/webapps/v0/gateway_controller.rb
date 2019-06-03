@@ -1,4 +1,4 @@
-class Webapps::GatewayController < ApplicationController
+class Webapps::V0::GatewayController < Webapps::V0::BaseController
 
   before_action :cors_handling
 
@@ -27,23 +27,6 @@ class Webapps::GatewayController < ApplicationController
   def cors_handling
 
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 end

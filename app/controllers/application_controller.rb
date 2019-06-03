@@ -4,6 +4,7 @@ class ApplicationController < ActionController::API
   include Sanitizer
 
   before_action :sanitize_params
+  before_action :authenticate_request
 
   after_action :set_response_headers
 

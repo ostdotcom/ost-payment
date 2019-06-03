@@ -1,3 +1,17 @@
+'Authentication::ApiRequest::V0':
+  :mandatory:
+    - :api_key
+    - :signature
+    - :request_timestamp
+    - :url_path
+    - :request_parameters
+  :optional:
+
+'Authentication::WebappsRequest::V0':
+  :mandatory:
+    - :token
+  :optional:
+
 'Webapps::Gateway::Factory::GenerateGatewayToken':
   :mandatory:
     - :gateway_type
@@ -5,15 +19,11 @@
   :optional:
     - :customer_id
 
-
 'Webapps::Gateway::GenerateGatewayToken::Braintree':
   :mandatory:
     - :gateway_details
   :optional:
     - :customer_id
-
-
-    -
 
 'Webapps::Gateway::SaveNonce':
   :mandatory:

@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
 
-  scope '/webapps/gateway', controller: 'webapps/gateway' do
+  scope '/webapps/v0/gateway', controller: 'webapps/gateway' do
     get ':gateway_type/generate-token' => :generate_gateway_token, via: :POST
     get ':gateway_type/save-nonce' => :save_nonce, via: :POST
-
-
   end
 
 
