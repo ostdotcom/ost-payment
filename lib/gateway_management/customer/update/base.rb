@@ -44,7 +44,7 @@ module GatewayManagement::Customer::Update
     def validate_and_sanitize
       return error_with_identifier('forbidden_api_request',
                                    'gm_cc_b_vs_1',
-                                   ['inactive_gateway']
+                                   ['inactive_gateway_type']
       ) if gateway_client.blank?
 
       success
@@ -68,7 +68,7 @@ module GatewayManagement::Customer::Update
       success
     end
 
-    # gateway type
+    # gateway client wrapper instance
     #
     # * Author: Aman
     # * Date: 30/05/2019
@@ -78,7 +78,7 @@ module GatewayManagement::Customer::Update
     #
     #
     def gateway_client
-      @gateway_client ||= get_gateway_client(@client_id, gateway_type)
+      @gateway_client ||= get_gateway_client({client_id: @client_id, gateway_type: gateway_type})
     end
 
     # gateway type

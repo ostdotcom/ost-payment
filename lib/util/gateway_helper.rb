@@ -3,7 +3,7 @@ module Util
 
     # Util::GatewayHelper
 
-    # gateway type
+    # gateway client
     #
     # * Author: Aman
     # * Date: 30/05/2019
@@ -12,10 +12,16 @@ module Util
     # @return [String]
     #
     #
-    def self.get_gateway_client(client_id, gateway_type)
+    def get_gateway_client(params)
+      client_id = params[:client_id]
+      gateway_type = params[:gateway_type]
+      gateway_detail = params[:gateway_detail]
+
       @gateway_client ||= begin
-        gateway_details = GatewayDetail.get_from_memcache(client_id, gateway_type)
-        return nil if gateway_details.blank?
+                            if gateway_detail.blank?
+                              gateway_detail = GatewayDetail.get_from_memcache(client_id, gateway_type)
+                              return nil if gateway_detail.blank?
+                            end
 
         gc = "Gateway::#{gateway_type.camelize}".constantize.new(gateway_details.decrypted_details)
         # gc = "Gateway::#{gateway_type.camelize}".constantize.new({})

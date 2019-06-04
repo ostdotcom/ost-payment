@@ -13,7 +13,7 @@ module Formatter
         #
         def generate_token(data_to_format)
           {
-              ost_payment_token: data_to_format[:token]
+              ost_payment_token: data_to_format[:ost_payment_token][:token]
           }
         end
 

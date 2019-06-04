@@ -3,29 +3,32 @@ module Webapps
     module GenerateGatewayToken
       class Braintree < Base
 
-
-        # init  Webapps::Gateway::GenerateGatewayToken
+        # Initialize
         #
         # * Author: Mayur
-        # * Date: 31/05/2019
-        # * Reviewed By
+        # * Date: 30/05/2019
+        # * Reviewed By:
+        #
+        # @param [AR] gateway_detail (mandatory) - gateway detail obj
+        # @param [AR] ost_payment_token (mandatory) - ost payment token obj
+        # @param [Integer] customer_id (optional) - customer id
+        #
+        # @return [Webapps::Gateway::GenerateGatewayToken::Braintree]
         #
         def initialize(params)
           super(params)
-          @braintree_gateway = ::Gateway::Braintree.new(@params)
         end
 
-        # perform i.e calls generate_token of braintree gateway
+        # Perform
         #
         # * Author: Mayur
-        # * Date: 31/05/2019
-        # * Reviewed By
+        # * Date: 30/05/2019
+        # * Reviewed By:
+        #
+        # @return [Result::Base]
         #
         def perform
-
-          r = validate
-          return r unless r.success?
-          res = @braintree_gateway.generate_token({customer_id: @params[:customer_id]})
+          super
         end
 
       end

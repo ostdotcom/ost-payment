@@ -1,10 +1,22 @@
-missing_api_key:
-  parameter: "api_key"
-  msg: "Api Key is mandatory."
+invalid_company:
+  parameter: "company"
+  msg: "Company is Invalid. Max Length is 255"
 
-missing_api_secret:
-  parameter: "api_secret"
-  msg: "Api Secret is mandatory."
+invalid_customer_id:
+  parameter: "customer_id"
+  msg: "Customer ID is Invalid. Max Length is 255."
+
+invalid_email:
+  parameter: "email"
+  msg: "Email format is Invalid."
+
+invalid_fax:
+  parameter: "fax"
+  msg: "Fax is Invalid. Max Length is 255."
+
+invalid_first_name:
+  parameter: "first_name"
+  msg: "First Name is Invalid. Max Length is 255."
 
 invalid_gateway_nonce:
   parameter: "gateway_nonce"
@@ -21,3 +33,51 @@ invalid_payment_nonce_uuid:
 missing_customer_id:
   parameter: "missing_customer_id"
   msg: "Customer ID is missing."
+
+invalid_id:
+  parameter: "id"
+  msg: "ID is invalid."
+
+invalid_last_name:
+  parameter: "last_name"
+  msg: "Last Name is Invalid. Max Length is 255."
+
+invalid_payment_nonce_uuid:
+  parameter: "payment_nonce_uuid"
+  msg: "Payment Nonce UUID is invalid."
+
+invalid_phone:
+  parameter: "phone"
+  msg: "Phone is Invalid. Max Length is 255."
+
+expired_token:
+  parameter: "token"
+  msg: "Token has expired"
+
+invalid_website:
+  parameter: "website"
+  msg: "Website is Invalid. Max Length is 255."
+
+missing_api_key:
+  parameter: "api_key"
+  msg: "Api Key is mandatory."
+
+missing_gateway_nonce:
+  parameter: "gateway_nonce"
+  msg: "Gateway Nonce is mandatory."
+
+missing_id:
+  parameter: "id"
+  msg: "ID is mandatory."
+
+missing_request_timestamp:
+  parameter: "request_timestamp"
+  msg: "Request Timestamp is mandatory."
+
+missing_signature:
+  parameter: "signature"
+  msg: "Signature is mandatory."
+
+missing_token:
+  parameter: "token"
+  msg: "Token is mandatory."

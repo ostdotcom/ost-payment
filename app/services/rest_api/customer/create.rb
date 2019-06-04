@@ -1,6 +1,6 @@
 module RestApi
   module Customer
-    class Create < ServicesBase
+    class Create < RestApi::Customer::Base
 
       # Initialize
       #

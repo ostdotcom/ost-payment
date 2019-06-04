@@ -1,4 +1,4 @@
-class Webapps::GatewayController < ApplicationController
+class Webapps::V0::GatewayController < Webapps::V0::BaseController
 
   before_action :cors_handling
 
@@ -23,27 +23,6 @@ class Webapps::GatewayController < ApplicationController
     service_response = Webapps::Gateway::SaveNonce.new(params).perform
     render_api_response(service_response)
   end
-
-  def cors_handling
-
-  end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 end

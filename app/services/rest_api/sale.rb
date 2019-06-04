@@ -139,7 +139,7 @@ module RestApi
     def validate_optional_params
       return error_with_identifier('invalid_api_params',
                                    'ra_gt_vop_1',
-                                   ['some_of_optional_params_missing']
+                                   ['missing_customer_id']
       ) unless @params[:payment_nonce_uuid].present? || (@params[:customer_id] && @params[:payment_method_id])
       success
     end
