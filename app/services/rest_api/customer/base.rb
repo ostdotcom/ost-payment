@@ -20,7 +20,7 @@ module RestApi
       #
       # Sets gateway_nonce, ost_payment_token
       #
-      # @return [RestApi::Customer::Create]
+      # @return [RestApi::Customer::Base]
       #
       def initialize(params)
         super(params)

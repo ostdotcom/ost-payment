@@ -1,6 +1,6 @@
 module RestApi
   module Customer
-    class Update < ServicesBase
+    class Update < RestApi::Customer::Base
 
       # Initialize
       #
@@ -50,7 +50,7 @@ module RestApi
 
         get_gateway_customer_association
 
-        r = update_customer_in_gateway
+        r = update_customer_with_payment_nonce_in_gateway
         return r unless r.success?
 
         success_with_data(service_response_data)
@@ -93,15 +93,16 @@ module RestApi
         return error_with_identifier('invalid_api_params',
                                      'ra_c_u_vci_1',
                                      ['invalid_id']
-        ) unless Util::CommonValidateAndSanitize.is_positive_integer?(id)
+        ) unless Util::CommonValidateAndSanitize.is_positive_integer?(@id)
 
 
-        @customer = Customer.get_from_memcache(@id)
+        @customer = ::Customer.get_from_memcache(@id)
 
         return error_with_identifier('invalid_api_params',
                                      'ra_c_u_vci_2',
                                      ['invalid_id']
-        ) if @customer.blank?
+        ) if @customer.blank? || @customer.status != GlobalConstant::Customer.active_status ||
+            @customer.client_id != @client.id
 
         success
       end
@@ -135,7 +136,6 @@ module RestApi
       #
       def get_gateway_customer_association
         @gateway_customer_associations = GatewayCustomerAssociation.get_all_from_memcache(@id).index_by(&:gateway_type)
-
       end
 
       # Create a customer
@@ -148,7 +148,7 @@ module RestApi
       #
       # Sets customer
       #
-      def update_customer_payment_nonce_in_gateway
+      def update_customer_with_payment_nonce_in_gateway
         return success if @gateway_customer_associations.blank? && @gateway_nonce.blank?
 
         @gateway_customer_associations.each do |gateway_type, gateway_customer_association|

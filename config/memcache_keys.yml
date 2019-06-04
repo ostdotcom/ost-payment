@@ -26,3 +26,8 @@ gateway_customer_association:
   get_all_by_customer_id:
     key_template: 'gateway_customer_association_all_active_%{customer_id}'
     expiry_in_seconds: 86400
+
+ost_payment_token:
+  get_by_token:
+    key_template: 'ost_payment_token_by_tkn_%{token}'
+    expiry_in_seconds: 86400

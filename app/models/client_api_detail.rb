@@ -9,6 +9,7 @@ class ClientApiDetail < EstablishOstPaymentClientDbConnection
     where(status: [GlobalConstant::ClientApiDetail.active_status])
   }
 
+  attr_accessor :decrypted_api_secret
   after_commit :memcache_flush
 
 
@@ -43,6 +44,9 @@ class ClientApiDetail < EstablishOstPaymentClientDbConnection
 
       r = Aws::Kms.new('saas', 'saas').decrypt(client_obj.salt)
       client_obj.decrypted_salt = r.data[:plaintext] if r.success?
+
+      r = LocalCipher.new(client_obj.decrypted_salt).decrypt(client_api_detail_obj.api_secret)
+      client_api_detail_obj.decrypted_api_secret = r.data[:plaintext] if r.success?
 
       {client: client_obj, client_api_detail: client_api_detail_obj}
     end

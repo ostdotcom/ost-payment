@@ -1,19 +1,16 @@
 Rails.application.routes.draw do
 
-  scope '/webapps/gateway', controller: 'webapps/gateway' do
+  scope '/webapps/v0/gateway/:gateway_type', controller: 'webapps/v0/gateway' do
     get ':gateway_type/generate-token' => :generate_gateway_token, via: :POST
     get ':gateway_type/save-nonce' => :save_nonce, via: :POST
-
-
   end
 
-
-  scope '/api/v0', controller: 'rest_api/v0/ost_payment_controller' do
+  scope '/api/v0', controller: 'rest_api/v0/ost_payment' do
     post '/generate-token' => :generate_token
     post '/sale' => :sale
   end
 
-  scope '/api/v0/customer', controller: 'rest_api/v0/customer_controller' do
+  scope '/api/v0/customer', controller: 'rest_api/v0/customer' do
     post '/' => :create_customer
     post '/:id' => :update_customer
   end

@@ -24,6 +24,7 @@ module Webapps
         @gateway_nonce = @params[:gateway_nonce]
         @ost_payment_token = @params[:ost_payment_token]
         @gateway_type = @params[:gateway_type]
+
         @gateway_nonce_record = nil
       end
 
@@ -80,6 +81,13 @@ module Webapps
                                      'w_g_sn_vgn_1',
                                      ['invalid_gateway_nonce']
         ) unless Util::CommonValidateAndSanitize.is_string?(@gateway_nonce)
+        @gateway_nonce = @gateway_nonce.to_s
+
+        return error_with_identifier('invalid_api_params',
+                                     'w_g_sn_vgn_1',
+                                     ['expired_token']
+        ) if GatewayNonce.where(ost_payment_token_id: @ost_payment_token.id, gateway_type: @gateway_type).exists?
+
         success
       end
 
@@ -92,10 +100,13 @@ module Webapps
       # @return [Result::Base]
       #
       def validate_gateway_type
+        @gateway_type = @gateway_type.to_s
+
         return error_with_identifier('invalid_api_params',
                                      'w_g_sn_vgn_2',
                                      ['invalid_gateway_type']
         ) unless GlobalConstant::GatewayType.is_valid_gateway_type?(@gateway_type)
+
         success
       end
 
@@ -130,10 +141,10 @@ module Webapps
       # @return [String]
       #
       def get_uuid
-        rand_no = rand.to_s[2..6].to_s #generate 5 digit random string
-        timestamp = Time.now.to_f.to_s
+        rand_str = SecureRandom.hex
+        timestamp = Time.now.to_i.to_s
 
-        Digest::SHA256.hexdigest(rand_no + '-' + timestamp)
+        rand_str + timestamp
       end
 
       # Api Response

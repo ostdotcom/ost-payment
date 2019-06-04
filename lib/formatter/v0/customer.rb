@@ -20,6 +20,23 @@ module Formatter
           formatted_data
         end
 
+        # Format
+        # Always receives [Hash]
+        # :NOTE return as is
+        #
+        # * Author: Aman
+        # * Date:
+        # * Reviewed By:
+        #
+        def update_customer(data_to_format)
+          formatted_data = {
+              result_type: 'customer',
+              customer: customer_base(data_to_format[:customer])
+          }
+
+          formatted_data
+        end
+
         private
 
         # Format customer

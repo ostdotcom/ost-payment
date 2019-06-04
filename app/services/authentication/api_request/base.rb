@@ -121,9 +121,8 @@ module Authentication::ApiRequest
 
       return invalid_credentials_response('a_ar_b_vc_1') unless @client.present?
 
-      return error_with_identifier('invalid_client_id',
-                                   'a_ar_b_vc_2'
-      ) if @client.status != GlobalConstant::Client.active_status
+      return invalid_credentials_response('a_ar_b_vc_2') if
+          @client.status != GlobalConstant::Client.active_status
 
       r = decrypt_api_secret
 
@@ -160,22 +159,7 @@ module Authentication::ApiRequest
     # @return [Result::Base]
     #
     def decrypt_api_secret
-
-      if @client.decrypted_salt.present?
-        api_salt_d = @client.decrypted_api_salt
-      else
-        r = Aws::Kms.new('saas', 'saas').decrypt(@client.salt)
-        return r unless r.success?
-
-        @client.memcache_flush
-        api_salt_d = r.data[:plaintext]
-      end
-
-      r = LocalCipher.new(api_salt_d).decrypt(@client_api_detail.api_secret)
-      return r unless r.success?
-
-      @api_secret_d = r.data[:plaintext]
-
+      @api_secret_d = @client_api_detail.decrypted_api_secret
       success
     end
 
@@ -200,7 +184,7 @@ module Authentication::ApiRequest
     # @return [Result::Base]
     #
     def invalid_credentials_response(internal_code)
-      error_with_identifier('invalid_or_expired_token', internal_code)
+      error_with_identifier('unauthorized_api_request', internal_code)
     end
 
   end
