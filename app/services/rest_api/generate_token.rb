@@ -78,7 +78,7 @@ module RestApi
       ) unless Util::CommonValidateAndSanitize.is_integer?(@customer_id)
 
       @customer_id = @customer_id.to_i
-      @customer = Customer.get_from_memcache(@customer_id)
+      @customer = ::Customer.get_from_memcache(@customer_id)
       return error_with_identifier('invalid_api_params',
                                    'ra_gt_vc_2',
                                    ['invalid_customer_id']

@@ -1,6 +1,6 @@
 module RestApi
   module Customer
-    class Update < ServicesBase
+    class Update < RestApi::Customer::Base
 
       # Initialize
       #

@@ -160,22 +160,7 @@ module Authentication::ApiRequest
     # @return [Result::Base]
     #
     def decrypt_api_secret
-
-      if @client.decrypted_salt.present?
-        api_salt_d = @client.decrypted_api_salt
-      else
-        r = Aws::Kms.new('saas', 'saas').decrypt(@client.salt)
-        return r unless r.success?
-
-        @client.memcache_flush
-        api_salt_d = r.data[:plaintext]
-      end
-
-      r = LocalCipher.new(api_salt_d).decrypt(@client_api_detail.api_secret)
-      return r unless r.success?
-
-      @api_secret_d = r.data[:plaintext]
-
+      @api_secret_d = @client_api_detail.decrypted_api_secret
       success
     end
 

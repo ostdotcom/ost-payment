@@ -33,7 +33,7 @@
     - :gateway_type
   :optional:
 
-'RestApi::GenerateToken::GenerateGatewayToken::Braintree':
+'RestApi::GenerateToken':
   :mandatory:
     - :client
   :optional:
@@ -52,7 +52,7 @@
     - :website
     - :payment_nonce_uuid
 
-'RestApi::Customer::Create':
+'RestApi::Customer::Update':
   :mandatory:
     - :client
     - :id
