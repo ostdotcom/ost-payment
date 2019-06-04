@@ -1,42 +1,30 @@
+Authentication::ApiRequest::V0:
+  mandatory:
+    - api_key
+    - signature
+    - request_timestamp
+    - url_path
+    - request_parameters
+  optional:
+
+Authentication::WebappsRequest::V0:
+  mandatory:
+    - token
+  optional:
+
 Webapps::Gateway::Factory::GenerateGatewayToken:
   mandatory:
     - gateway_type
-    - ost_payment_tokens_object
+    - ost_payment_token
   optional:
     - customer_id
 
 Webapps::Gateway::GenerateGatewayToken::Braintree:
   mandatory:
-    - gateway_details
+    - gateway_detail
+    - ost_payment_token
   optional:
     - customer_id
-'Authentication::ApiRequest::V0':
-  :mandatory:
-    - :api_key
-    - :signature
-    - :request_timestamp
-    - :url_path
-    - :request_parameters
-  :optional:
-
-'Authentication::WebappsRequest::V0':
-  :mandatory:
-    - :token
-  :optional:
-
-'Webapps::Gateway::Factory::GenerateGatewayToken':
-  :mandatory:
-    - :gateway_type
-    - :ost_payment_token
-  :optional:
-    - :customer_id
-
-'Webapps::Gateway::GenerateGatewayToken::Braintree':
-  :mandatory:
-    - :gateway_detail
-    - :ost_payment_token
-  :optional:
-    - :customer_id
 
 Webapps::Gateway::SaveNonce:
   mandatory:
@@ -70,13 +58,14 @@ RestApi::Customer::Create:
     - fax
     - website
     - payment_nonce_uuid
-'RestApi::GenerateToken':
-  :mandatory:
-    - :client
-  :optional:
-    - :customer_id
 
-RestApi::Customer::Create:
+RestApi::GenerateToken:
+  mandatory:
+    - client
+  optional:
+    - customer_id
+
+RestApi::Customer::Update:
   mandatory:
     - client
     - id
@@ -89,29 +78,3 @@ RestApi::Customer::Create:
     - fax
     - website
     - payment_nonce_uuid
-'RestApi::Customer::Create':
-  :mandatory:
-    - :client
-  :optional:
-    - :first_name
-    - :last_name
-    - :company
-    - :email
-    - :phone
-    - :fax
-    - :website
-    - :payment_nonce_uuid
-
-'RestApi::Customer::Update':
-  :mandatory:
-    - :client
-    - :id
-  :optional:
-    - :first_name
-    - :last_name
-    - :company
-    - :email
-    - :phone
-    - :fax
-    - :website
-    - :payment_nonce_uuid
