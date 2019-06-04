@@ -13,6 +13,7 @@ class ServicesBase
   def initialize(service_params={})
     service_klass = self.class.to_s
     service_params_list = ServicesBase.get_service_params(service_klass)
+    service_params_list.deep_symbolize_keys!
 
     # passing only the mandatory and optional params to a service
     permitted_params_list = ((service_params_list[:mandatory] || []) + (service_params_list[:optional] || [])) || []
@@ -20,7 +21,7 @@ class ServicesBase
     permitted_params = {}
 
     permitted_params_list.each do |pp|
-      permitted_params[pp] = service_params[pp]
+      permitted_params[pp] = service_params[pp.to_sym]
     end
 
     @params = HashWithIndifferentAccess.new(permitted_params)
@@ -38,8 +39,8 @@ class ServicesBase
   #
   def self.get_service_params(service_class)
     # Load mandatory params yml only once
-    @mandatory_params ||= YAML.load_file(open(Rails.root.to_s + '/app/services/service_params.yml'))
-    @mandatory_params[service_class]
+    @mandatory_params ||= YAML.load_file(open(Rails.root.to_s + '/app/services/service_params.yml'), safe: true)
+    @mandatory_params[service_class.to_s]
   end
 
   # Current Time

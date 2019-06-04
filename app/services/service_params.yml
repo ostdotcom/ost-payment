@@ -1,56 +1,59 @@
-'Webapps::Gateway::Factory::GenerateGatewayToken':
-  :mandatory:
-    - :gateway_type
-    - :ost_payment_tokens_object
-  :optional:
-    - :customer_id
+Webapps::Gateway::Factory::GenerateGatewayToken:
+  mandatory:
+    - gateway_type
+    - ost_payment_tokens_object
+  optional:
+    - customer_id
 
+Webapps::Gateway::GenerateGatewayToken::Braintree:
+  mandatory:
+    - gateway_details
+  optional:
+    - customer_id
 
-'Webapps::Gateway::GenerateGatewayToken::Braintree':
-  :mandatory:
-    - :gateway_details
-  :optional:
-    - :customer_id
+Webapps::Gateway::SaveNonce:
+  mandatory:
+    - gateway_nonce
+    - ost_payment_token
+    - gateway_type
+  optional:
 
+RestApi::GenerateToken:
+  mandatory:
+    - client
+  optional:
+    - customer_id
 
-    -
+RestApi::AddPaymentMethod:
+  mandatory:
+    - client
+    - payment_nonce_uuid
+  optional:
+    - customer_id
 
-'Webapps::Gateway::SaveNonce':
-  :mandatory:
-    - :gateway_nonce
-  :optional:
-    - :ost_payment_token
-    - :gateway_type
+RestApi::Customer::Create:
+  mandatory:
+    - client
+  optional:
+    - first_name
+    - last_name
+    - company
+    - email
+    - phone
+    - fax
+    - website
+    - payment_nonce_uuid
 
-'RestApi::GenerateToken::GenerateGatewayToken::Braintree':
-  :mandatory:
-    - :client
-  :optional:
-    - :customer_id
-
-'RestApi::Customer::Create':
-  :mandatory:
-    - :client
-  :optional:
-    - :first_name
-    - :last_name
-    - :company
-    - :email
-    - :phone
-    - :fax
-    - :website
-    - :payment_nonce_uuid
-
-'RestApi::Customer::Create':
-  :mandatory:
-    - :client
-    - :id
-  :optional:
-    - :first_name
-    - :last_name
-    - :company
-    - :email
-    - :phone
-    - :fax
-    - :website
-    - :payment_nonce_uuid
+RestApi::Customer::Create:
+  mandatory:
+    - client
+    - id
+  optional:
+    - first_name
+    - last_name
+    - company
+    - email
+    - phone
+    - fax
+    - website
+    - payment_nonce_uuid

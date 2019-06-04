@@ -11,10 +11,10 @@ class CreateGatewayNonces < DbMigrationConnection
         t.column :gateway_type, :tinyint, limit: 2, null: false
         t.column :status, :tinyint, limit: 1, null: false
         t.timestamps
-
-
       end
-      add_index :gateway_nonces, [:ost_payment_token_id, :gateway_type, :nonce], unique: true, name: 'ost_payment_token_id_gateway_type_nonce'
+
+      add_index :gateway_nonces, [:uuid], unique: true, name: 'uniq_uuid'
+      add_index :gateway_nonces, [:ost_payment_token_id, :gateway_type], unique: true, name: 'uniq_ost_payment_token_id_gateway_type'
 
     end
   end

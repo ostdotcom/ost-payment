@@ -22,8 +22,8 @@ gem 'http', '3.0.0'
 gem 'sidekiq', '5.0.5'
 gem 'listen', '3.1.5'
 
-gem 'braintree', '2.96.0'
-
+gem 'braintree', '~> 2.87'
+gem 'safe_yaml', '0.6.3'
 
 group :development, :test do
   # Use Puma as the app server

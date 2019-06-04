@@ -11,10 +11,10 @@ module Gateway
       def initialize(params)
 
         gateway_details = params[:gateway_details]
-        @merchant_id =  gateway_details[:merchant_id]
-        @public_key = gateway_details[:public_key]
-        @private_key = gateway_details[:private_key]
-        @environment = gateway_details[:environment]
+        @merchant_id = gateway_details[:merchant_id] #"27p4h4sf4rt4jnx6"
+        @public_key =  gateway_details[:public_key] #"w9nb4v2sz4bpn4g7"
+        @private_key = gateway_details[:private_key] #"fc5536beea65343db37e9fb31f1bdc9e"
+        @environment = gateway_details[:environment] #"sandbox"
 
         initialize_braintree_obj
 
@@ -56,13 +56,13 @@ module Gateway
       # * Reviewed By
       #
       def create_payment_method(params)
-        r = validate_params(params, {mandatory: [:customer_id, :nonce]})
+        r = validate_params(params, {mandatory: [:customer_id, :payment_method_nonce]})
 
         return r unless r.success?
 
         result = @gateway.payment_method.create(
             :customer_id => params[:customer_id],
-            :payment_method_nonce => params[:nonce]
+            :payment_method_nonce => params[:payment_method_nonce]
         )
         success_with_data({result: result})
       end

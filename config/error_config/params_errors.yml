@@ -13,3 +13,11 @@ invalid_gateway_nonce:
 invalid_gateway_type:
   parameter: "gateway_type"
   msg: "Gateway Type is invalid."
+
+invalid_payment_nonce_uuid:
+  parameter: "payment_nonce_uuid"
+  msg: "Payment Nonce UUID is invalid."
+
+missing_customer_id:
+  parameter: "missing_customer_id"
+  msg: "Customer ID is missing."
