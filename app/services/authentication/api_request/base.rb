@@ -121,9 +121,8 @@ module Authentication::ApiRequest
 
       return invalid_credentials_response('a_ar_b_vc_1') unless @client.present?
 
-      return error_with_identifier('invalid_client_id',
-                                   'a_ar_b_vc_2'
-      ) if @client.status != GlobalConstant::Client.active_status
+      return invalid_credentials_response('a_ar_b_vc_2') if
+          @client.status != GlobalConstant::Client.active_status
 
       r = decrypt_api_secret
 
@@ -185,7 +184,7 @@ module Authentication::ApiRequest
     # @return [Result::Base]
     #
     def invalid_credentials_response(internal_code)
-      error_with_identifier('invalid_or_expired_token', internal_code)
+      error_with_identifier('unauthorized_api_request', internal_code)
     end
 
   end

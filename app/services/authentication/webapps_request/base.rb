@@ -73,7 +73,7 @@ module Authentication::WebappsRequest
     # @return [Result::Base]
     #
     def invalid_credentials_response(internal_code)
-      error_with_identifier('invalid_or_expired_token', internal_code)
+      error_with_identifier('unauthorized_api_request', internal_code)
     end
 
   end
